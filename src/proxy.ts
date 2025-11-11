@@ -1,4 +1,4 @@
-// import { betterFetch } from '@better-fetch/fetch';
+import { betterFetch } from '@better-fetch/fetch';
 import createMiddleware from 'next-intl/middleware';
 import { type NextRequest, NextResponse } from 'next/server';
 import {
@@ -7,11 +7,11 @@ import {
   LOCALE_COOKIE_NAME,
   routing,
 } from './i18n/routing';
-// import type { Session } from './lib/auth-types';
-// import { getBaseUrl } from './lib/urls/urls';
+import type { Session } from './lib/auth-types';
+import { getBaseUrl } from './lib/urls/urls';
 import {
   DEFAULT_LOGIN_REDIRECT,
-  protectedRoutes,
+  whileListedRoutes,
   routesNotAllowedByLoggedInUsers,
 } from './routes';
 
@@ -36,6 +36,37 @@ export default async function proxy(req: NextRequest) {
     nextUrl.pathname,
     LOCALES
   );
+
+  const { data: session } = await betterFetch<Session>(
+    '/api/auth/get-session',
+    {
+      baseURL: getBaseUrl(),
+      headers: {
+        cookie: req.headers.get('cookie') || '', // Forward the cookies from the request
+      },
+    }
+  );
+  const isLoggedIn = !!session;
+
+  const notWhiteListed = !whileListedRoutes.some((route) =>
+    new RegExp(`^${route}$`).test(pathnameWithoutLocale))
+
+  // If the route can not be accessed by logged in users, redirect if the user is logged in
+  if (!isLoggedIn && notWhiteListed) {
+    let callbackUrl = nextUrl.pathname;
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search;
+    }
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+    console.log(
+      '<< middleware end, not logged in, redirecting to login, callbackUrl',
+      callbackUrl
+    );
+    return NextResponse.redirect(
+      new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+    );
+  }
+
 
   // Apply intlMiddleware for all routes
   console.log('<< middleware end, applying intlMiddleware', nextUrl.pathname, pathnameWithoutLocale);

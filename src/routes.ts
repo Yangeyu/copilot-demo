@@ -21,8 +21,14 @@ export const routesNotAllowedByLoggedInUsers = [Routes.Login, Routes.Register];
 /**
  * The routes that are protected and require authentication
  */
-export const protectedRoutes = [
-];
+export const protectedRoutes = [ ];
+
+
+export const whileListedRoutes = [
+  Routes.Login,
+  Routes.Register,
+  Routes.Root,
+]
 
 /**
  * The default redirect path after logging in

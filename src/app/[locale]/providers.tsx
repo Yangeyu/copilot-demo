@@ -1,7 +1,7 @@
 'use client';
 
 // import { ActiveThemeProvider } from '@/components/layout/active-theme-provider';
-// import { QueryProvider } from '@/components/providers/query-provider';
+import { QueryProvider } from '@/components/providers/query-provider';
 // import { TooltipProvider } from '@/components/ui/tooltip';
 import { websiteConfig } from '@/config/website';
 // import type { Translations } from 'fumadocs-ui/i18n';
@@ -51,6 +51,10 @@ export function Providers({ children, locale }: ProvidersProps) {
   //   chooseLanguage: 'chooseLanguage',
   // };
 
-  return (children)
+  return (
+    <QueryProvider>
+      {children}
+    </QueryProvider>
+  )
 }
 
