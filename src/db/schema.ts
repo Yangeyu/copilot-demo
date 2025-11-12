@@ -119,3 +119,34 @@ export const creditTransaction = pgTable("credit_transaction", {
   index("credit_transaction_type_idx").on(table.type),
 ]));
 
+export const chatSessions = pgTable("chat_sessions", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => user.id, { onDelete: 'cascade' }),
+  title: text("title").notNull().default("New Chat"),
+  model: text("model"),
+  systemPrompt: text("system_prompt"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  isArchived: boolean("is_archived").notNull().default(false),
+  metadata: text("metadata"), // 存储JSON字符串
+}, (table) => ([
+  index("chat_sessions_user_id_idx").on(table.userId),
+  index("chat_sessions_created_at_idx").on(table.createdAt),
+  index("chat_sessions_updated_at_idx").on(table.updatedAt),
+]));
+
+export const chatMessages = pgTable("chat_messages", {
+  id: text("id").primaryKey(),
+  sessionId: text("session_id").notNull().references(() => chatSessions.id, { onDelete: 'cascade' }),
+  role: text("role").notNull(), // 'user', 'assistant', 'system'
+  content: text("content").notNull(),
+  tokens: integer("tokens"),
+  model: text("model"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  metadata: text("metadata"), // 存储JSON字符串
+}, (table) => ([
+  index("chat_messages_session_id_idx").on(table.sessionId),
+  index("chat_messages_created_at_idx").on(table.createdAt),
+  index("chat_messages_role_idx").on(table.role),
+]));
+
