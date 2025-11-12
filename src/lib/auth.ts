@@ -7,7 +7,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { admin } from 'better-auth/plugins';
 import { parse as parseCookies } from 'cookie';
 import type { Locale } from 'next-intl';
-import { getBaseUrl, getUrlWithLocaleInCallbackUrl } from './urls';
+import { getBaseUrl, getUrlWithLocaleInCallbackUrl } from './urls/urls';
 
 /**
  * Better Auth configuration
