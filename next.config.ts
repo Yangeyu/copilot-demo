@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { createMDX } from 'fumadocs-mdx/next'
 
 const nextConfig: NextConfig = {
   ...(process.env.DOCKER_BUILD === 'true' && { output: 'standalone' }),
@@ -23,5 +24,7 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin();
 
-export default withNextIntl(nextConfig);
+const withMDX = createMDX()
+
+export default withMDX(withNextIntl(nextConfig));
 

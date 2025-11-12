@@ -47,10 +47,8 @@ export default async function LocaleLayout({
       >
         <NuqsAdapter>
           <NextIntlClientProvider>
-            <Providers locale={locale}>
               {children}
               {/* <Toaster richColors position="top-right" offset={64} /> */}
-            </Providers>
           </NextIntlClientProvider>
         </NuqsAdapter>
       </body>
