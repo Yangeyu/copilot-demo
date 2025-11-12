@@ -7,6 +7,9 @@ export enum Routes {
   Root = '/',
 
   Blog = '/blog',
+  
+  Terms = '/terms',
+  Privacy = '/privacy',
 
   // auth routes
   Login = '/auth/login',
@@ -21,14 +24,9 @@ export const routesNotAllowedByLoggedInUsers = [Routes.Login, Routes.Register];
 /**
  * The routes that are protected and require authentication
  */
-export const protectedRoutes = [ ];
-
-
-export const whileListedRoutes = [
-  Routes.Login,
-  Routes.Register,
-  Routes.Root,
-]
+export const protectedRoutes = [
+  Routes.Blog
+];
 
 /**
  * The default redirect path after logging in

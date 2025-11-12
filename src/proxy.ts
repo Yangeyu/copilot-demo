@@ -11,8 +11,8 @@ import type { Session } from './lib/auth-types';
 import { getBaseUrl } from './lib/urls/urls';
 import {
   DEFAULT_LOGIN_REDIRECT,
-  whileListedRoutes,
   routesNotAllowedByLoggedInUsers,
+  protectedRoutes,
 } from './routes';
 
 const intlMiddleware = createMiddleware(routing);
@@ -48,11 +48,11 @@ export default async function proxy(req: NextRequest) {
   );
   const isLoggedIn = !!session;
 
-  const notWhiteListed = !whileListedRoutes.some((route) =>
+  const isProtectedRoute = protectedRoutes.some((route) =>
     new RegExp(`^${route}$`).test(pathnameWithoutLocale))
 
   // If the route can not be accessed by logged in users, redirect if the user is logged in
-  if (!isLoggedIn && notWhiteListed) {
+  if (!isLoggedIn && isProtectedRoute) {
     let callbackUrl = nextUrl.pathname;
     if (nextUrl.search) {
       callbackUrl += nextUrl.search;
