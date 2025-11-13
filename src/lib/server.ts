@@ -1,8 +1,8 @@
-import 'server-only';
+import "server-only";
 
-import { headers } from 'next/headers';
-import { cache } from 'react';
-import { auth } from './auth';
+import { headers } from "next/headers";
+import { cache } from "react";
+import { auth } from "./auth";
 
 /**
  * Get the current session

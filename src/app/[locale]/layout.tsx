@@ -1,13 +1,13 @@
-import { routing } from '@/i18n/routing';
-import { cn } from '@/lib/utils';
-import { type Locale, NextIntlClientProvider, hasLocale } from 'next-intl';
-import { notFound } from 'next/navigation';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import type { ReactNode } from 'react';
+import { routing } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
+import { type Locale, NextIntlClientProvider, hasLocale } from "next-intl";
+import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import type { ReactNode } from "react";
 // import { Toaster } from 'sonner';
-import { Providers } from './providers';
+import { Providers } from "./providers";
 
-import '@/styles/globals.css';
+import "@/styles/globals.css";
 
 interface LocaleLayoutProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
   const { locale } = await params;
 
-  console.log('xxxxxx:', locale);
+  console.log("xxxxxx:", locale);
 
 
   // Ensure that the incoming `locale` is valid
@@ -42,7 +42,7 @@ export default async function LocaleLayout({
       <body
         suppressHydrationWarning
         className={cn(
-          'size-full antialiased',
+          "size-full antialiased",
         )}
       >
         <NuqsAdapter>

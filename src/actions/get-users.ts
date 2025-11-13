@@ -1,17 +1,17 @@
-'use server';
+"use server";
 
-import { getDb } from '@/db';
-import { user } from '@/db/schema';
-import { isDemoWebsite } from '@/lib/demo';
-import { adminActionClient } from '@/lib/safe-action';
-import { asc, desc, ilike, or, sql } from 'drizzle-orm';
-import { z } from 'zod';
+import { getDb } from "@/db";
+import { user } from "@/db/schema";
+import { isDemoWebsite } from "@/lib/demo";
+import { adminActionClient } from "@/lib/safe-action";
+import { asc, desc, ilike, or, sql } from "drizzle-orm";
+import { z } from "zod";
 
 // Define the schema for getUsers parameters
 const getUsersSchema = z.object({
   pageIndex: z.number().min(0).default(0),
   pageSize: z.number().min(1).max(100).default(10),
-  search: z.string().optional().default(''),
+  search: z.string().optional().default(""),
   sorting: z
     .array(
       z.object({
@@ -77,9 +77,9 @@ export const getUsersAction = adminActionClient
       if (isDemo) {
         items = items.map((item) => ({
           ...item,
-          name: 'Demo User',
-          email: 'example@mksaas.com',
-          customerId: 'cus_abcdef123456',
+          name: "Demo User",
+          email: "example@mksaas.com",
+          customerId: "cus_abcdef123456",
         }));
       }
 
@@ -91,10 +91,10 @@ export const getUsersAction = adminActionClient
         },
       };
     } catch (error) {
-      console.error('get users error:', error);
+      console.error("get users error:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch users',
+        error: error instanceof Error ? error.message : "Failed to fetch users",
       };
     }
   });

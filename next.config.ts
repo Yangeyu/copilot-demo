@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import { createMDX } from 'fumadocs-mdx/next'
+import { createMDX } from "fumadocs-mdx/next"
 
 const nextConfig: NextConfig = {
-  ...(process.env.DOCKER_BUILD === 'true' && { output: 'standalone' }),
+  ...(process.env.DOCKER_BUILD === "true" && { output: "standalone" }),
   // cacheComponents: true,
 
   /* config options here */

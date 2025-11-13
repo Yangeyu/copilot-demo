@@ -1,7 +1,7 @@
-import Container from '@/components/layout/container';
-import type { PropsWithChildren } from 'react';
+import Container from "@/components/layout/container";
+import type { PropsWithChildren } from "react";
 
-import '@/styles/mdx.css';
+import "@/styles/mdx.css";
 
 export default function LegalLayout({ children }: PropsWithChildren) {
   return (

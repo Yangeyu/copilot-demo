@@ -1,8 +1,8 @@
-import { formatDate } from '@/lib/formatter';
-import type { PagesType } from '@/lib/source';
-import { CalendarIcon } from 'lucide-react';
-import { getMDXComponents } from '../docs/mdx-components';
-import { CardContent } from '../ui/card';
+import { formatDate } from "@/lib/formatter";
+import type { PagesType } from "@/lib/source";
+import { CalendarIcon } from "lucide-react";
+import { getMDXComponents } from "../docs/mdx-components";
+import { CardContent } from "../ui/card";
 
 interface CustomPageProps {
   page: PagesType;

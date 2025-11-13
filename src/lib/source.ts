@@ -1,8 +1,8 @@
-import { type InferPageType, loader } from 'fumadocs-core/source';
-import { changelog, pages } from '../../.source';
-import { createMDXSource } from 'fumadocs-mdx/runtime/next';
-import { DEFAULT_LOCALE, LOCALES } from '@/i18n/routing';
-import type { I18nConfig } from 'fumadocs-core/i18n';
+import { type InferPageType, loader } from "fumadocs-core/source";
+import { changelog, pages } from "../../.source";
+import { createMDXSource } from "fumadocs-mdx/runtime/next";
+import { DEFAULT_LOCALE, LOCALES } from "@/i18n/routing";
+import type { I18nConfig } from "fumadocs-core/i18n";
 
 /**
  * Internationalization configuration for FumaDocs
@@ -12,7 +12,7 @@ import type { I18nConfig } from 'fumadocs-core/i18n';
 export const docsI18nConfig: I18nConfig = {
   defaultLanguage: DEFAULT_LOCALE,
   languages: LOCALES,
-  hideLocale: 'default-locale',
+  hideLocale: "default-locale",
 };
 
 
@@ -27,7 +27,7 @@ export const docsI18nConfig: I18nConfig = {
  * Changelog source
  */
 export const changelogSource = loader({
-  baseUrl: '/changelog',
+  baseUrl: "/changelog",
   i18n: docsI18nConfig,
   source: createMDXSource(changelog),
 });
@@ -38,7 +38,7 @@ export const changelogSource = loader({
  * TODO: how to set the baseUrl for pages?
  */
 export const pagesSource = loader({
-  baseUrl: '/pages',
+  baseUrl: "/pages",
   i18n: docsI18nConfig,
   source: createMDXSource(pages),
 });

@@ -1,19 +1,19 @@
-import { websiteConfig } from './config/website';
+import { websiteConfig } from "./config/website";
 
 /**
  * The routes for the application
  */
 export enum Routes {
-  Root = '/',
+  Root = "/",
 
-  Blog = '/blog',
+  Blog = "/blog",
   
-  Terms = '/terms',
-  Privacy = '/privacy',
+  Terms = "/terms",
+  Privacy = "/privacy",
 
   // auth routes
-  Login = '/auth/login',
-  Register = '/auth/register',
+  Login = "/auth/login",
+  Register = "/auth/register",
 }
 
 /**

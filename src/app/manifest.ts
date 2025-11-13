@@ -1,5 +1,5 @@
-import { defaultMessages } from '@/i18n/messages';
-import type { MetadataRoute } from 'next';
+import { defaultMessages } from "@/i18n/messages";
+import type { MetadataRoute } from "next";
 
 /**
  * Generates the Web App Manifest for the application
@@ -25,22 +25,22 @@ export default function manifest(): MetadataRoute.Manifest {
     name: defaultMessages.Metadata.name,
     short_name: defaultMessages.Metadata.name,
     description: defaultMessages.Metadata.description,
-    start_url: '/',
-    display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#ffffff',
+    start_url: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
     icons: [
       {
-        src: '/android-chrome-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-        purpose: 'maskable',
+        src: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "maskable",
       },
       {
-        src: '/android-chrome-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'maskable',
+        src: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };

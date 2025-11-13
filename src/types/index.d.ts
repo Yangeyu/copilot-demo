@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 /**
  * website config, without translations
@@ -29,12 +29,12 @@ export interface MetadataConfig {
 }
 
 export interface ModeConfig {
-  defaultMode?: 'light' | 'dark' | 'system';                  // The default mode of the website
+  defaultMode?: "light" | "dark" | "system";                  // The default mode of the website
   enableSwitch?: boolean;                                     // Whether to enable the mode switch
 }
 
 export interface ThemeConfig {
-  defaultTheme?: 'default' | 'blue' | 'green' | 'amber' | 'neutral'; // The default theme of the website
+  defaultTheme?: "default" | "blue" | "green" | "amber" | "neutral"; // The default theme of the website
   enableSwitch?: boolean;                                     // Whether to enable the theme switch
 }
 
@@ -87,7 +87,7 @@ export interface I18nConfig {
  */
 export interface StorageConfig {
   enable: boolean;                   // Whether to enable the storage
-  provider: 's3';                    // The storage provider, only s3 is supported for now
+  provider: "s3";                    // The storage provider, only s3 is supported for now
 }
 
 /**

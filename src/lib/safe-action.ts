@@ -1,7 +1,7 @@
-import { createSafeActionClient } from 'next-safe-action';
-import type { User } from './auth-types';
-import { isDemoWebsite } from './demo';
-import { getSession } from './server';
+import { createSafeActionClient } from "next-safe-action";
+import type { User } from "./auth-types";
+import { isDemoWebsite } from "./demo";
+import { getSession } from "./server";
 
 // -----------------------------------------------------------------------------
 // 1. Base action client – put global error handling / metadata here if needed
@@ -17,7 +17,7 @@ export const actionClient = createSafeActionClient({
 
     return {
       success: false,
-      error: 'Something went wrong while executing the action',
+      error: "Something went wrong while executing the action",
     };
   },
 });
@@ -30,7 +30,7 @@ export const userActionClient = actionClient.use(async ({ next }) => {
   if (!session?.user) {
     return {
       success: false,
-      error: 'Unauthorized',
+      error: "Unauthorized",
     };
   }
 
@@ -43,13 +43,13 @@ export const userActionClient = actionClient.use(async ({ next }) => {
 export const adminActionClient = userActionClient.use(async ({ next, ctx }) => {
   const user = (ctx as { user: User }).user;
   const isDemo = isDemoWebsite();
-  const isAdmin = user.role === 'admin';
+  const isAdmin = user.role === "admin";
 
   // If this is a demo website and user is not an admin, allow the request
   if (!isAdmin && !isDemo) {
     return {
       success: false,
-      error: 'Unauthorized',
+      error: "Unauthorized",
     };
   }
 

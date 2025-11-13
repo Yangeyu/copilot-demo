@@ -1,5 +1,5 @@
-import { routing } from '@/i18n/routing';
-import type { Locale } from 'next-intl';
+import { routing } from "@/i18n/routing";
+import type { Locale } from "next-intl";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_BASE_URL ??
@@ -16,7 +16,7 @@ export function getBaseUrl(): string {
  * Check if the locale should be appended to the URL
  */
 export function shouldAppendLocale(locale?: Locale | null): boolean {
-  return !!locale && locale !== routing.defaultLocale && locale !== 'default';
+  return !!locale && locale !== routing.defaultLocale && locale !== "default";
 }
 
 /**
@@ -56,25 +56,25 @@ export function getUrlWithLocaleInCallbackUrl(
     const urlObj = new URL(url);
 
     // Check if there's a callbackURL parameter
-    const callbackURL = urlObj.searchParams.get('callbackURL');
+    const callbackURL = urlObj.searchParams.get("callbackURL");
 
     if (callbackURL) {
       // Only modify the callbackURL if it doesn't already include the locale
       if (!callbackURL.match(new RegExp(`^/${locale}(/|$)`))) {
         // Add locale to the callbackURL
-        const localizedCallbackURL = callbackURL.startsWith('/')
+        const localizedCallbackURL = callbackURL.startsWith("/")
           ? `/${locale}${callbackURL}`
           : `/${locale}/${callbackURL}`;
 
         // Update the search parameter
-        urlObj.searchParams.set('callbackURL', localizedCallbackURL);
+        urlObj.searchParams.set("callbackURL", localizedCallbackURL);
       }
     }
 
     return urlObj.toString();
   } catch (error) {
     // If URL parsing fails, return the original URL
-    console.warn('Failed to parse URL for locale insertion:', url, error);
+    console.warn("Failed to parse URL for locale insertion:", url, error);
     return url;
   }
 }
@@ -85,10 +85,10 @@ export function getUrlWithLocaleInCallbackUrl(
  * @returns The URL of the image
  */
 export function getImageUrl(image: string): string {
-  if (image.startsWith('http://') || image.startsWith('https://')) {
+  if (image.startsWith("http://") || image.startsWith("https://")) {
     return image;
   }
-  if (image.startsWith('/')) {
+  if (image.startsWith("/")) {
     return `${getBaseUrl()}${image}`;
   }
   return `${getBaseUrl()}/${image}`;
@@ -100,7 +100,7 @@ export function getImageUrl(image: string): string {
  * @returns The Stripe dashboard customer URL
  */
 export function getStripeDashboardCustomerUrl(customerId: string): string {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     return `https://dashboard.stripe.com/test/customers/${customerId}`;
   }
   return `https://dashboard.stripe.com/customers/${customerId}`;

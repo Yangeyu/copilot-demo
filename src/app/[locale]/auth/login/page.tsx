@@ -1,8 +1,8 @@
 // import { LoginForm } from '@/components/auth/login-form';
-import { constructMetadata } from '@/lib/metadata';
-import { getUrlWithLocale } from '@/lib/urls/urls';
-import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
+import { constructMetadata } from "@/lib/metadata";
+import { getUrlWithLocale } from "@/lib/urls/urls";
+import type { Metadata } from "next";
+import type { Locale } from "next-intl";
 
 export async function generateMetadata({
   params,
@@ -12,9 +12,9 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Title',
-    description: 'Description',
-    canonicalUrl: getUrlWithLocale('/auth/login', locale),
+    title: "Title",
+    description: "Description",
+    canonicalUrl: getUrlWithLocale("/auth/login", locale),
   });
 }
 

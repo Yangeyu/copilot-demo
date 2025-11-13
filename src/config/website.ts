@@ -1,4 +1,4 @@
-import type { WebsiteConfig } from '@/types';
+import type { WebsiteConfig } from "@/types";
 
 /**
  * website config, without translations
@@ -9,46 +9,46 @@ import type { WebsiteConfig } from '@/types';
 export const websiteConfig: WebsiteConfig = {
   ui: {
     theme: {
-      defaultTheme: 'default',
+      defaultTheme: "default",
       enableSwitch: true,
     },
     mode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       enableSwitch: true,
     },
   },
   metadata: {
     images: {
-      ogImage: '/og.png',
-      logoLight: '/logo.png',
-      logoDark: '/logo-dark.png',
+      ogImage: "/og.png",
+      logoLight: "/logo.png",
+      logoDark: "/logo-dark.png",
     },
     social: {
-      github: 'https://github.com/MkSaaSHQ',
+      github: "https://github.com/MkSaaSHQ",
     },
   },
   routes: {
-    defaultLoginRedirect: '/dashboard',
+    defaultLoginRedirect: "/dashboard",
   },
   auth: {
     enableCredentialLogin: true,
   },
   i18n: {
-    defaultLocale: 'zh',
+    defaultLocale: "zh",
     locales: {
       en: {
-        flag: '🇺🇸',
-        name: 'English',
+        flag: "🇺🇸",
+        name: "English",
       },
       zh: {
-        flag: '🇨🇳',
-        name: '中文',
+        flag: "🇨🇳",
+        name: "中文",
       },
     },
   },
   storage: {
     enable: true,
-    provider: 's3',
+    provider: "s3",
   },
 };
 

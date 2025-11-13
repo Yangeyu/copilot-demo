@@ -803,7 +803,7 @@ export const PromptInputTextarea = ({
       // Check if the submit button is disabled before submitting
       const form = e.currentTarget.form;
       const submitButton = form?.querySelector(
-        'button[type="submit"]'
+        "button[type=\"submit\"]"
       ) as HTMLButtonElement | null;
       if (submitButton?.disabled) {
         return;

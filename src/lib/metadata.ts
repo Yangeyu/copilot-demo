@@ -1,7 +1,7 @@
-import { websiteConfig } from '@/config/website';
-import { defaultMessages } from '@/i18n/messages';
-import type { Metadata } from 'next';
-import { getBaseUrl, getImageUrl } from './urls/urls';
+import { websiteConfig } from "@/config/website";
+import { defaultMessages } from "@/i18n/messages";
+import type { Metadata } from "next";
+import { getBaseUrl, getImageUrl } from "./urls/urls";
 
 /**
  * Construct the metadata object for the current page (in docs/guides)
@@ -22,7 +22,7 @@ export function constructMetadata({
   title = title || defaultMessages.Metadata.title;
   description = description || defaultMessages.Metadata.description;
   image = image || websiteConfig.metadata.images?.ogImage;
-  const ogImageUrl = getImageUrl(image || '');
+  const ogImageUrl = getImageUrl(image || "");
   return {
     title,
     description,
@@ -32,8 +32,8 @@ export function constructMetadata({
         }
       : undefined,
     openGraph: {
-      type: 'website',
-      locale: 'en_US',
+      type: "website",
+      locale: "en_US",
       url: canonicalUrl,
       title,
       description,
@@ -41,16 +41,16 @@ export function constructMetadata({
       images: [ogImageUrl.toString()],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [ogImageUrl.toString()],
       site: getBaseUrl(),
     },
     icons: {
-      icon: '/favicon.ico',
-      shortcut: '/favicon-32x32.png',
-      apple: '/apple-touch-icon.png',
+      icon: "/favicon.ico",
+      shortcut: "/favicon-32x32.png",
+      apple: "/apple-touch-icon.png",
     },
     metadataBase: new URL(getBaseUrl()),
     manifest: `${getBaseUrl()}/manifest.webmanifest`,

@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { LocaleLink } from '@/i18n/navigation';
+import { Button } from "@/components/ui/button";
+import { LocaleLink } from "@/i18n/navigation";
 
 /**
  * Note that `app/[locale]/[...rest]/page.tsx`
@@ -12,14 +12,14 @@ export default function NotFound() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-8">
-      <h1 className="text-4xl font-bold">{'Title'}</h1>
+      <h1 className="text-4xl font-bold">{"Title"}</h1>
 
       <p className="text-balance text-center text-xl font-medium px-4">
-        {'NotFound'}
+        {"NotFound"}
       </p>
 
       <Button asChild size="lg" variant="default" className="cursor-pointer">
-        <LocaleLink href="/">{'BACK'}</LocaleLink>
+        <LocaleLink href="/">{"BACK"}</LocaleLink>
       </Button>
     </div>
   );

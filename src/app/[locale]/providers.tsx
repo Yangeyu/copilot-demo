@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
 // import { ActiveThemeProvider } from '@/components/layout/active-theme-provider';
-import { QueryProvider } from '@/components/providers/query-provider';
+import { QueryProvider } from "@/components/providers/query-provider";
 // import { TooltipProvider } from '@/components/ui/tooltip';
-import { websiteConfig } from '@/config/website';
+import { websiteConfig } from "@/config/website";
 // import type { Translations } from 'fumadocs-ui/i18n';
-import { RootProvider } from 'fumadocs-ui/provider/next';
-import { useTranslations } from 'next-intl';
+import { RootProvider } from "fumadocs-ui/provider/next";
+import { useTranslations } from "next-intl";
 // import { ThemeProvider, useTheme } from 'next-themes';
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 interface ProvidersProps {
   children: ReactNode;

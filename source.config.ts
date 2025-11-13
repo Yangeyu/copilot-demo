@@ -3,8 +3,8 @@ import {
   defineDocs,
   frontmatterSchema,
   metaSchema,
-} from 'fumadocs-mdx/config';
-import { z } from 'zod';
+} from "fumadocs-mdx/config";
+import { z } from "zod";
 
 
 /**
@@ -13,8 +13,8 @@ import { z } from 'zod';
  * title is required, but description is optional in frontmatter
  */
 export const changelog = defineCollections({
-  type: 'doc',
-  dir: 'content/changelog',
+  type: "doc",
+  dir: "content/changelog",
   schema: frontmatterSchema.extend({
     version: z.string(),
     date: z.string().date(),
@@ -28,8 +28,8 @@ export const changelog = defineCollections({
  * title is required, but description is optional in frontmatter
  */
 export const pages = defineCollections({
-  type: 'doc',
-  dir: 'content/pages',
+  type: "doc",
+  dir: "content/pages",
   schema: frontmatterSchema.extend({
     date: z.string().date(),
     published: z.boolean().default(true),

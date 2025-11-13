@@ -1,13 +1,13 @@
-import { websiteConfig } from '@/config/website';
-import { getDb } from '@/db/index';
-import { defaultMessages } from '@/i18n/messages';
-import { LOCALE_COOKIE_NAME, routing } from '@/i18n/routing';
-import { type User, betterAuth } from 'better-auth';
-import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { admin } from 'better-auth/plugins';
-import { parse as parseCookies } from 'cookie';
-import type { Locale } from 'next-intl';
-import { getBaseUrl, getUrlWithLocaleInCallbackUrl } from './urls/urls';
+import { websiteConfig } from "@/config/website";
+import { getDb } from "@/db/index";
+import { defaultMessages } from "@/i18n/messages";
+import { LOCALE_COOKIE_NAME, routing } from "@/i18n/routing";
+import { type User, betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { admin } from "better-auth/plugins";
+import { parse as parseCookies } from "cookie";
+import type { Locale } from "next-intl";
+import { getBaseUrl, getUrlWithLocaleInCallbackUrl } from "./urls/urls";
 
 /**
  * Better Auth configuration
@@ -20,7 +20,7 @@ export const auth = betterAuth({
   baseURL: getBaseUrl(),
   appName: defaultMessages.Metadata.name,
   database: drizzleAdapter(await getDb(), {
-    provider: 'pg', // or "mysql", "sqlite"
+    provider: "pg", // or "mysql", "sqlite"
   }),
   session: {
     // https://www.better-auth.com/docs/concepts/session-management#cookie-cache
@@ -43,7 +43,7 @@ export const auth = betterAuth({
     // https://www.better-auth.com/docs/concepts/database#extending-core-schema
     additionalFields: {
       customerId: {
-        type: 'string',
+        type: "string",
         required: false,
       },
     },
@@ -70,14 +70,14 @@ export const auth = betterAuth({
       // defaultBanReason: 'Spamming',
       defaultBanExpiresIn: undefined,
       bannedUserMessage:
-        'You have been banned from this application. Please contact support if you believe this is an error.',
+        "You have been banned from this application. Please contact support if you believe this is an error.",
     }),
   ],
   onAPIError: {
     // https://www.better-auth.com/docs/reference/options#onapierror
-    errorURL: '/auth/error',
+    errorURL: "/auth/error",
     onError: (error, ctx) => {
-      console.error('auth error:', error);
+      console.error("auth error:", error);
     },
   },
 });
@@ -90,7 +90,7 @@ export const auth = betterAuth({
  * @returns The locale from the request or the default locale
  */
 export function getLocaleFromRequest(request?: Request): Locale {
-  const cookies = parseCookies(request?.headers.get('cookie') ?? '');
+  const cookies = parseCookies(request?.headers.get("cookie") ?? "");
   return (cookies[LOCALE_COOKIE_NAME] as Locale) ?? routing.defaultLocale;
 }
 

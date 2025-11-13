@@ -1,19 +1,19 @@
-import { betterFetch } from '@better-fetch/fetch';
-import createMiddleware from 'next-intl/middleware';
-import { type NextRequest, NextResponse } from 'next/server';
+import { betterFetch } from "@better-fetch/fetch";
+import createMiddleware from "next-intl/middleware";
+import { type NextRequest, NextResponse } from "next/server";
 import {
   DEFAULT_LOCALE,
   LOCALES,
   LOCALE_COOKIE_NAME,
   routing,
-} from './i18n/routing';
-import type { Session } from './lib/auth-types';
-import { getBaseUrl } from './lib/urls/urls';
+} from "./i18n/routing";
+import type { Session } from "./lib/auth-types";
+import { getBaseUrl } from "./lib/urls/urls";
 import {
   DEFAULT_LOGIN_REDIRECT,
   routesNotAllowedByLoggedInUsers,
   protectedRoutes,
-} from './routes';
+} from "./routes";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -29,7 +29,7 @@ const intlMiddleware = createMiddleware(routing);
  */
 export default async function proxy(req: NextRequest) {
   const { nextUrl } = req;
-  console.log('>> middleware start, pathname', nextUrl.pathname);
+  console.log(">> middleware start, pathname", nextUrl.pathname);
 
   // Get the pathname of the request (e.g. /zh/dashboard to /dashboard)
   const pathnameWithoutLocale = getPathnameWithoutLocale(
@@ -38,11 +38,11 @@ export default async function proxy(req: NextRequest) {
   );
 
   const { data: session } = await betterFetch<Session>(
-    '/api/auth/get-session',
+    "/api/auth/get-session",
     {
       baseURL: getBaseUrl(),
       headers: {
-        cookie: req.headers.get('cookie') || '', // Forward the cookies from the request
+        cookie: req.headers.get("cookie") || "", // Forward the cookies from the request
       },
     }
   );
@@ -59,7 +59,7 @@ export default async function proxy(req: NextRequest) {
     }
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
     console.log(
-      '<< middleware end, not logged in, redirecting to login, callbackUrl',
+      "<< middleware end, not logged in, redirecting to login, callbackUrl",
       callbackUrl
     );
     return NextResponse.redirect(
@@ -69,7 +69,7 @@ export default async function proxy(req: NextRequest) {
 
 
   // Apply intlMiddleware for all routes
-  console.log('<< middleware end, applying intlMiddleware', nextUrl.pathname, pathnameWithoutLocale);
+  console.log("<< middleware end, applying intlMiddleware", nextUrl.pathname, pathnameWithoutLocale);
   return intlMiddleware(req);
 }
 
@@ -77,8 +77,8 @@ export default async function proxy(req: NextRequest) {
  * Get the pathname of the request (e.g. /zh/dashboard to /dashboard)
  */
 function getPathnameWithoutLocale(pathname: string, locales: string[]): string {
-  const localePattern = new RegExp(`^/(${locales.join('|')})/`);
-  return pathname.replace(localePattern, '/');
+  const localePattern = new RegExp(`^/(${locales.join("|")})/`);
+  return pathname.replace(localePattern, "/");
 }
 
 /**
@@ -93,7 +93,7 @@ export const config = {
     // Match all pathnames except for
     // - if they start with `/api`, `/_next` or `/_vercel`
     // - if they contain a dot (e.g. `favicon.ico`)
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    "/((?!api|_next|_vercel|.*\\..*).*)",
   ],
 };
 
