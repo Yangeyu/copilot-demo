@@ -706,6 +706,7 @@ export const PromptInput = ({
       })
     ).then((convertedFiles: FileUIPart[]) => {
       try {
+        // @ts-expect-error - fix type
         const result = onSubmit({ text, files: convertedFiles }, event);
 
         // Handle both sync and async onSubmit
