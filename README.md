@@ -61,6 +61,51 @@ src/
 - `account` 表：存储第三方登录账号信息
 - `verification` 表：存储验证信息（如邮箱验证）
 
+## Zustand 状态管理
+
+### 文件结构
+
+```
+src/
+├── storage/
+│   └── locale-store.ts          # 语言状态管理
+```
+
+### 配置信息
+
+- 版本: `zustand@5.0.8`
+- 使用 TypeScript 进行类型安全的状态管理
+- 采用函数式 API 设计，支持 React Hooks
+
+### 使用方式
+
+#### 在组件中使用状态
+
+```tsx
+import { useLocaleStore } from '@/storage/locale-store';
+
+export default function LanguageSwitcher() {
+  const { currentLocale, setCurrentLocale } = useLocaleStore();
+
+  return (
+    <button
+      onClick={() => setCurrentLocale('en')}
+      disabled={currentLocale === 'en'}
+    >
+      切换到英文
+    </button>
+  );
+}
+```
+
+#### 选择性地使用状态
+
+```tsx
+// 只获取需要的状态，避免不必要的重渲染
+const currentLocale = useLocaleStore((state) => state.currentLocale);
+const setCurrentLocale = useLocaleStore((state) => state.setCurrentLocale);
+```
+
 ## 国际化多语言支持(next-intl)
 
 ### 文件结构
